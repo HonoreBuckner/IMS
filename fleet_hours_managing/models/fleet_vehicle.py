@@ -32,7 +32,7 @@ class FleetVehicle(models.Model):
     @api.multi
     def services_reminder(self):
         if self.time_before_next_service < 48:
-            model_id = self.env['ir.model'].search(['model','ilike','%fleet.vehicle%'])
+            model_id = self.env['ir.model'].search([('model','ilike','%fleet.vehicle%')])
             res_model_id = 402
             if model_id and model_id.id:
                 res_model_id = model_id.id
