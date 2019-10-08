@@ -19,22 +19,32 @@ class FleetVehicle(models.Model):
     horaire_count = fields.Integer(compute='_compute_horaire_count', string='Horaires')
     equipment_count = fields.Integer(compute='_compute_equipment_count', string='Equipements')
     serial_number = fields.Char(string="Numero de serie")
-    parc_number = fields.Char(string="Numero de parc")
+    parc_number = fields.Char(string="Codification")
     log_components = fields.One2many('fleet.vehicle.component.log', 'vehicle_id', string='Suivi des composants')
 
     
+    
+    @api.depends('model_id.brand_id.name', 'model_id.name', 'license_plate')
+    def _compute_vehicle_name(self):
+        for record in self:
+            record.name  = record.name + ':' + record.parc_number
+            
     @api.multi
     def services_reminder(self):
         if self.time_before_next_service < 48:
-            # model_id = self.env['ir.model'].search(['model','=','fleet.vehicle'], limit=1).id
+            model_id = self.env['ir.model'].search([('model','=like','fleet.vehicle')])
+            res_model_id = 402
+            if model_id and model_id.id:
+                res_model_id = model_id.id
+	
             # activity_type_id = self.env['mail.activity.type'].search(['name','=','intervention'], limit=1).id
             activity = {
 				'activity_type_id': 1,
 				'res_id':self.id,
-				'res_model_id':168,
+				'res_model_id':res_model_id,
 				'summary':'Services ' + str(self.next_service_time) + 'Heures' ,
 				'note':"La maintenance preventive du vehicule %s approche" % self.name,
-				'date_deadline':fields.Date.today() + timedelta(days=2),
+				'date_deadline':fields.Date.today() + timedelta(days=5),
 				'automated':True,
 				}
             self.env['mail.activity'].create(activity)
@@ -87,7 +97,14 @@ class FleetVehicle(models.Model):
     _sql_constraints = [('fleet_serial_number_unique', 'unique(serial_number)', 'Serial number already exists')]
     _sql_constraints = [('fleet_parc_number_unique', 'unique(parc_number)', 'Parc number already exists')]
 
-
+class FleetVehicleCategory(models.Model):
+    _name = "fleet.vehicle.category"
+    _description = "Famille ou categorie de véhicule"
+	
+    name = fields.Char(string="Famille")
+	
+    _sql_constraints = [('fleet_category_name', 'unique(name)', 'Categorie already exists')]
+    
 class FleetVehicleHoraire(models.Model):
     _name = 'fleet_hours_managing.horaire'
     _description = 'horaire log for a vehicle'
@@ -211,9 +228,9 @@ class Composant(models.Model):
     @api.depends('vehicle_id')
     def _vehicle_onchange(self):
         if self.vehicle_id:
-            active =True
+            self.active =True
         else:
-            active = False
+            self.active = False
 
 
     @api.multi
@@ -225,13 +242,13 @@ class Composant(models.Model):
     def create(self, vals):
         res = super(Composant, self).create(vals)
         if 'vehicle_id' in vals:
-            active = True
+            res['active'] = True
         if 'initial_time_of_component' in vals:
-            self.time_of_use = vals['initial_time_of_component']
+            res['time_of_use'] = vals['initial_time_of_component']
         else:
-            self.time_of_use = 0.0
+            res['time_of_use'] = 0.0
         if 'expected_life' in vals:
-            self.alert_time = vals['alert_time'] if 'alert_time' in vals else 5*vals['expected_life']/100
+            res['alert_time'] = vals['alert_time'] if 'alert_time' in vals else vals['expected_life']/100
         return res			
 
 class FleetServiceType(models.Model):
