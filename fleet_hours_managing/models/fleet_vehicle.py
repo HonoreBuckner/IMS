@@ -27,7 +27,7 @@ class FleetVehicle(models.Model):
     @api.depends('model_id.brand_id.name', 'model_id.name', 'license_plate')
     def _compute_vehicle_name(self):
         for record in self:
-            record.name  = record.name + ':' + record.parc_number
+            record.name  = str(record.name) + ':' + str(record.parc_number)
             
     @api.multi
     def services_reminder(self):
