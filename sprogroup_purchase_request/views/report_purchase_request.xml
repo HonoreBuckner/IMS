@@ -1,5 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-<report 
+   <report 
             id="action_report_purchase_request"
             string="purchase request"
             model="sprogroup.purchase.request" 
