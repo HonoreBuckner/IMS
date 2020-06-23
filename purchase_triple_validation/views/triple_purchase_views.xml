@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="purchase_order_triple_view_form_inherit" model="ir.ui.view">
+        <field name="name">purchase.order.triple.form.inherit</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header/button[@name='action_rfq_send']" position="after">
+                <button name="first_validation" string="Demande approbation" class="oe_highlight" type="object" />
+                <button name="second_validation" string="Approuver" class="oe_highlight" type="object" />
+                <button name="third_validation" string="Approuver" class="oe_highlight" type="object" />
+            </xpath>
+            
+        </field>
+    </record>
+
+
+</odoo>

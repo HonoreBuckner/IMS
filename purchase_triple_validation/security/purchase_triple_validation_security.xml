@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="group_first_approver" model="res.groups">
+            <field name="name">Première Approbation</field>
+            <field name="category_id" ref="base.module_category_purchase_management"/>
+        </record>
+
+        <record id="group_second_approver" model="res.groups">
+            <field name="name">Deuxième Approbation</field>
+            <field name="category_id" ref="base.module_category_purchase_management"/>
+            
+        </record>
+
+        <record id="group_third_approver" model="res.groups">
+            <field name="name">Troisième Approbation</field>
+            <field name="category_id" ref="base.module_category_purchase_management"/>
+        </record>
+
+    </data>
+</odoo>
