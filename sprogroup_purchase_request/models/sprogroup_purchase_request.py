@@ -214,7 +214,7 @@ class SprogroupPurchaseRequest(models.Model):
 
             product_line = (0, 0, {'product_id' : line.product_id.id,
                                    'state' : 'draft',
-                                   'product_uom' : line.product_id.uom_po_id.id,
+                                   'product_uom_id' : line.product_id.uom_po_id.id,
                                     'price_unit' : 0,
                                    'date_planned' :  datetime.today().strftime(DEFAULT_SERVER_DATETIME_FORMAT),
                                    # 'taxes_id' : ((6,0,[taxes_id.id])),
@@ -260,11 +260,11 @@ class SprogroupPurchaseRequestLine(models.Model):
         track_visibility='onchange')
     name = fields.Char('Description', size=256,
                        track_visibility='onchange')
-    product_uom_id = fields.Many2one('product.uom', 'Product Unit of Measure',
+    product_uom_id = fields.Many2one('uom.uom', 'Product Unit of Measure',
                                      track_visibility='onchange')
     product_qty = fields.Float('Quantity', track_visibility='onchange',
                                digits=dp.get_precision(
-                                   'Product Unit of Measure'))
+                                   'Quantity'))
     request_id = fields.Many2one('sprogroup.purchase.request',
                                  'Purchase Request',
                                  ondelete='cascade', readonly=True)
