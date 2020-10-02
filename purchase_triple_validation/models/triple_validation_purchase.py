@@ -12,7 +12,7 @@ from odoo.addons.purchase.models.purchase import PurchaseOrder as Purchase
 class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
     
-    
+    state = fields.Selection(selection_add=[('Validation', 'Validation')])
     steps = fields.Selection([('first_step', 'Etape 1'), ('second_step','Etape 2'), ('third_step', 'Etape 3')],string="Etape" ,default="first_step")
     is_refused = fields.Boolean("Refusé")
     
