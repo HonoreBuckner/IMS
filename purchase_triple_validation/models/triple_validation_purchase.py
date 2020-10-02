@@ -13,22 +13,27 @@ class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
     
     
-    state = fields.Selection(selection_add=[('Validation','Approbation')])
     steps = fields.Selection([('first_step', 'Etape 1'), ('second_step','Etape 2'), ('third_step', 'Etape 3')],string="Etape" ,default="first_step")
     is_refused = fields.Boolean("Refusé")
     
     @api.multi
     def first_validation(self):
-        self.write({'state': 'Validation', 'steps': 'second_step'})
+        self.write({'state': 'to approve', 'steps': 'second_step'})
         return {}
 #send mail to all users of the second group 
     @api.multi
     def second_validation(self):
-        self.write({'state': 'Validation', 'steps': 'third_step'})
-        return {}
+        self.write({'state': 'to approve', 'steps': 'third_step'})
+        
 # send mail to all users of the third group
     def third_validation(self):
-        return {}     
+        button_approve()
+        
+       
+        
+        
+
+          
 #send mail to all users of the third group 
 
     @api.multi
