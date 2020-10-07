@@ -27,7 +27,7 @@ class PurchaseOrder(models.Model):
         
 # send mail to all users of the third group
     def third_validation(self):
-        button_approve()
+        self.button_approve()
         
        
         
