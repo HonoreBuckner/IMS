@@ -9,9 +9,9 @@
             <xpath expr="//header/button[@name='action_rfq_send']" position="after">
                 <field name="steps" invisible="1"/>
                 <button name="first_validation" string="Demande approbation" attrs="{'invisible': [('steps','not in',['first_step'])]}" states="draft,sent" class="oe_highlight" type="object" groups="purchase_triple_validation.group_first_approver"/>
-                <button name="second_validation" string="Approuver" states="Validation" class="oe_highlight" type="object" groups="purchase_triple_validation.group_second_approver" attrs="{'invisible': [('steps','not in',['second_step'])]}"/>
-                <button name="third_validation" string="Approuver" states="Validation" class="oe_highlight" type="object" groups="purchase_triple_validation.group_third_approver"/>
-                <button name="" string="Refuser" states="Validation"  type="action" groups="purchase_triple_validation.group_third_approver,purchase_triple_validation.group_second_approver"/>
+                <button name="second_validation" string="Approuver" states="to approve" class="oe_highlight" type="object" groups="purchase_triple_validation.group_second_approver" attrs="{'invisible': [('steps','not in',['second_step'])]}"/>
+                <button name="third_validation" string="Approuver La commande" states="to approve" class="oe_highlight" type="object" groups="purchase_triple_validation.group_third_approver"/>
+                <button name="" string="Refuser" states="to approve" type="action" groups="purchase_triple_validation.group_third_approver,purchase_triple_validation.group_second_approver"/>
             </xpath>
         </field>
     </record>
