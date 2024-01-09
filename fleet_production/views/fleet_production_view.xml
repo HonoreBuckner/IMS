@@ -22,7 +22,6 @@
             </field>
         </record>
 
-producp
 
 
         <record model="ir.actions.act_window" id="action_vehicles_list">
