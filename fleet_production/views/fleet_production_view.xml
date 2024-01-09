@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record model="ir.ui.view" id="view_work_log_form">
+            <field name="name">fleet.production.form</field>
+            <field name="model">fleet.production</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                       <button name="validate_production" type="object"  groups="fleet_production.production_manager"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="vehicle_id"/>
+                            <field name="operator"/>
+                            <field name="date"/>
+                            <field name="morning_hours"/>
+                            <field name="evening_hours"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+  <record model="ir.actions.act_window" id="action_vehicles_list">
+            <field name="name">Véhicules</field>
+            <field name="res_model">fleet.vehicle</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="action_work_logs_list">
+            <field name="name">Heures de Travail</field>
+            <field name="res_model">fleet.production</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="action_work_logs_list">
+            <field name="name">Heures de Travail</field>
+            <field name="res_model">fleet.production</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem name="Production" id="menu_vehicles_production" />
+        <menuitem name="Véhicules" parent="menu_vehicles_production" id="menu_vehicles_list" action="action_vehicles_list" />
+        <menuitem name="Heures de Travail" parent="menu_vehicles_production" id="menu_work_logs_list" action="action_work_logs_list" />
+
+</odoo>
