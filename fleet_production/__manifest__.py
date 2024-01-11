@@ -8,8 +8,7 @@
     'website': 'aosmali.com',
     'license': 'LGPL-3',
     'depends': ['fleet', 'sale','hr_maintenance'],
-    'data':[
-            "views/fleet_production_view.xml"],
+    'data':["views/fleet_production_view.xml", "security/fleet_production_security.xml"],
     'installable': True,
     'auto_install': False
 }
