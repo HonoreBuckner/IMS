@@ -6,25 +6,48 @@
             <field name="arch" type="xml">
                 <form>
                     <header>
-                       <button name="validate_production" type="object"  groups="fleet_production.production_manager"/>
+                       <button name="validate_production" type="object"  />
                     </header>
                     <sheet>
-                        <group>
+                        <div class="oe_title">
+                        <label for="vehicle_id"/>
+                        <h1>
                             <field name="vehicle_id"/>
+                        </h1>
+                        <label for="operator"/>
+                         <h2>
                             <field name="operator"/>
-                            <field name="date"/>
-                            <field name="morning_hours"/>
-                            <field name="evening_hours"/>
+                         </h2>
+                        <h2>
+                            <field name="site"/>
+                         </h2>
+                            </div>
+                            <group>
+                                <group string="Horaires">
+                                    <field name="date"/>
+                                    <label for="morning_hours"/>
+                                    <div>
+                                        <field name="morning_hours" widget="float_time" class="oe_inline"/> <span class="ml8">heures</span>
+                                    </div>
+                                 <label for="evening_hours"/>
+                                    <div>
+                                        <field name="evening_hours" widget="float_time" class="oe_inline"/> <span class="ml8">heures</span>
+                                    </div>
+                                </group>
+                                <group string="Chargement">
+                                   <field name="object_loaded"/>
+                                   <label for="day_load"/>
+                                    <div>
+                                        <field name="day_load" widget="float_time" class="oe_inline"/> <span class="ml8">tonnes</span>
+                                    </div>
+                                </group>
                         </group>
+                
                     </sheet>
                 </form>
             </field>
         </record>
-  <record model="ir.actions.act_window" id="action_vehicles_list">
-            <field name="name">Véhicules</field>
-            <field name="res_model">fleet.vehicle</field>
-            <field name="view_mode">tree,form</field>
-        </record>
+ 
         <record model="ir.actions.act_window" id="action_work_logs_list">
             <field name="name">Heures de Travail</field>
             <field name="res_model">fleet.production</field>
@@ -36,7 +59,6 @@
             <field name="view_mode">tree,form</field>
         </record>
         <menuitem name="Production" id="menu_vehicles_production" />
-        <menuitem name="Véhicules" parent="menu_vehicles_production" id="menu_vehicles_list" action="action_vehicles_list" />
         <menuitem name="Heures de Travail" parent="menu_vehicles_production" id="menu_work_logs_list" action="action_work_logs_list" />
 
 </odoo>
