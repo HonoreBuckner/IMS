@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <data noupdate="0">
+    <data >
 
 
         <record id="group_fleet_production_operator" model="res.groups">
@@ -24,7 +24,7 @@
 
 
     </data>
-    <data noupdate="1">
+    <data>
     <record id="fleet_production_security_rule" model="ir.rule">
             <field name="name">Règle de sécurité - Utilisateur Saisie</field>
             <field name="model_id" ref="model_fleet_production"/>
