@@ -45,10 +45,6 @@ class FleetProduction(models.Model):
             prod.total_day_hours = prod.morning_hours + prod.evening_hours
 
     def write(self, vals):
-        if not self.total_day_hours:
-            raise ValidationError('Renseignez les heures merci')
-        if self.load_required and not self.day_load:
-            raise ValidationError('Veuillez Renseigner la quantité chargée, elle est requise pour ce site')
         return super(FleetProduction, self).write(vals)
 
     def validate_production(self):
