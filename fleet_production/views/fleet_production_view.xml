@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+        <data noupdate="1"> 
         <record model="ir.ui.view" id="view_work_log_form">
             <field name="name">fleet.production.form</field>
             <field name="model">fleet.production</field>
@@ -60,5 +61,5 @@
         </record>
         <menuitem name="Production" id="menu_vehicles_production" />
         <menuitem name="Heures de Travail" parent="menu_vehicles_production" id="menu_work_logs_list" action="action_work_logs_list" />
-
+        </data>
 </odoo>
