@@ -7,7 +7,7 @@ class FleetVehicle(models.Model):
     hourly_rate = fields.Float(string='Taux horaire', required=True)
     work_logs = fields.One2many('fleet.production', 'vehicle_id', string='Historique des heures de travail')
     odometer = fields.Float(string='Compteur horaire', tracking=True)
-    odometer_unit = fields.Selection(selection_add=[('hours', 'Heures')])
+    odometer_unit = fields.Selection(selection_add=[('hours', 'Heures')], ondelete={'hours' :'set default'})
     scheduled_work_hours = fields.Float("Heures Prévues/jour")
     site = fields.Many2one("fleet.production.site", string="Site Actuel de Production")
     equipment_id = fields.Many2one('maintenance.equipment', string="Engins", compute='_create_equipment', store=True)
