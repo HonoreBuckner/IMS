@@ -1,6 +1,6 @@
 {
     'name': 'Fleet Production',
-    'version': '16.0.1',
+    'version': '18.0.1.0',
     'summary': 'Record the time of vehicle worked, create a sale order of worked hours',
     'description': 'record vehicle worked hours daily, ',
     'category': 'Category',
