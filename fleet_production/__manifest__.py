@@ -1,7 +1,7 @@
 {
     'name': 'Fleet Production',
-    'version': '16.0.1',
-    'summary': 'Record the time of vehicle worked, create a sale order of worked hours',
+    'version': '18.0.1.0',
+    'summary': 'Record the time of vehicle worked, create a sale order of worked hours ok',
     'description': 'record vehicle worked hours daily, ',
     'category': 'Category',
     'author': 'AOS Mali',
@@ -12,3 +12,4 @@
     'installable': True,
     'auto_install': False
 }
+
