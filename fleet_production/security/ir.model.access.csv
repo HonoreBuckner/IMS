@@ -1,1 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+fleet_production.access_maintenance_programs,access_maintenance_programs,fleet_production.model_maintenance_programs,base.group_user,1,0,0,0
+
